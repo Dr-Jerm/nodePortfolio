@@ -1,0 +1,52 @@
+!!! 5
+//if lt IE 7
+  html.no-js.ie6.oldie(lang='en')
+//if IE 7
+  html.no-js.ie7.oldie(lang='en')
+//if IE 8
+  html.no-js.ie8.oldie(lang='en') 
+//[if gt IE 8]><!
+html.no-js(lang='en')
+  //<![end if]
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+    title=title
+    meta(name="description", content=description)
+    meta(name="author", content=author)
+    meta(name="viewport", content='width=device-width, initial-scale=1')
+    link(rel="shortcut icon", href="/images/favicon.png")
+    link(rel='stylesheet', href='/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/css/bootstrap-responsive.min.css')
+    link(rel='stylesheet', href='/css/jquery-ui-1.10.0.custom.min.css')
+    link(rel='stylesheet', href='/css/style.css')
+    //-script(src='js/libs/modernizr-2.0.6.min.js')
+    script(src="/js/jquery.min.js")
+    script(src="/js/jquery-ui-1.10.0.custom.min.js")
+
+    script(src="/socket.io/socket.io.js")
+
+    script(type="text/javascript")
+      (function($){
+        var serverAddress = "#{serverAddress}"
+        console.log("Connecting socket to: " + serverAddress);
+        var socket = io.connect(serverAddress);
+      })(jQuery);
+
+    block head
+  body
+    div(class="navbar navbar-inverse navbar-fixed-top")
+      div(class="navbar-inner")
+        div(class="container")
+          a(class="btn btn-navbar",data-toggle="collapse",data-target=".nav-collapse")
+            span(class="icon-bar")
+            span(class="icon-bar")
+            span(class="icon-bar")
+          a(class="brand",href="/") Jeremy Bernstein
+    div(class="container")
+      block content
+
+      footer
+        block footer
+        script(src="/js/script.js")
+        script(src="/js/bootstrap.min.js")

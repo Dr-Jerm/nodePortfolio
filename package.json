@@ -1,0 +1,13 @@
+{
+  "name": "nodePortfolio",
+  "description": "My responsive webPortfolio",
+  "author": "Jeremy Bernstein <utilityjerm@gmail.com>",
+  "version": "0.0.1",
+  "dependencies": {
+    "connect": "1.8.5",
+    "express": "2.5.2",
+    "jade": "0.20.0",
+    "everyauth": "0.3.1"
+  },
+  "engine": "node >= 0.6.6"
+}
