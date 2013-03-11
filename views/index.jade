@@ -1,5 +1,22 @@
 extends layout
 
 block content
-	div
-		| Hello World
+  div
+    | Hello World
+
+    div#html5portfolio(style="display:none;")
+      include html5portfolio
+    div#htmlPortfolio(style="display:none;")
+      include htmlPortfolio
+  script(type="text/javascript")
+    (function($){
+      if(Detector.webgl){
+        console.log("WebGL enabled!")
+        $('#html5portfolio').css("display","inline");
+        console.log($('#html5portfolio'));
+      }
+      else{
+        console.log("Your client does not support WebGL!")
+        $('#htmlPortfolio').css("display","inline");
+      }
+    })(jQuery)
