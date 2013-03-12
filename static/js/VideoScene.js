@@ -2,7 +2,7 @@
 
 VideoScene = function(scene){
 	this.scene = scene; //THREE scene
-	this.scene.fog = new THREE.Fog( 0x000000, 100, 450 );
+	this.scene.fog = new THREE.Fog( 0x222222, 100, 450 );
 
 	this.videos = [];
 	this.clickables = [];
@@ -45,59 +45,6 @@ VideoScene = function(scene){
 	}
 	
 	
-}
-
-ParticleSystem = function(scene){
-	this.scene = scene;
-
-	var particles;
-	var geometry = new THREE.Geometry();
-	var materials = [];
-	var color;
-	
-	for (var i = 0; i < 100; i ++ ) {
-		var vertex = new THREE.Vector3();
-		vertex.x = (Math.random()-0.5) * 600;
-		vertex.y = (Math.random()-0.5) * 600;
-		vertex.z = (Math.random()-0.5) * 600;
-
-		geometry.vertices.push( vertex );
-	}
-
-	var parameters = [ [ [1.0, 1.0, 1.0], 5 ], [ [0.95, 1, 1], 4 ], [ [0.90, 1, 1], 3 ], [ [0.85, 1, 1], 2 ], [ [0.80, 1, 1], 1 ] ];
-
-	for ( i = 0; i < parameters.length; i ++ ) {
-
-		var size  = parameters[i][1] * 200;
-		color = parameters[i][0];
-		
-		materials[i] = new THREE.ParticleBasicMaterial( 
-				{ size: size, 
-					map: THREE.ImageUtils.loadTexture( 'images/cloud.png' ), 
-					color: 0xE1E1FF,
-					transparent: true,
-					depthWrite: false
-					} ); 
-
-		particles = new THREE.ParticleSystem( geometry, materials[i] );
-
-		particles.rotation.x = Math.random() * 6;
-		particles.rotation.y = Math.random() * 6;
-		particles.rotation.z = Math.random() * 6;
-
-		this.scene.add( particles );
-	}
-	
-	this.update = function(){
-		
-		for ( i = 0; i < this.scene.children.length; i ++ ) {
-			var object = scene.children[ i ];
-
-			if ( object instanceof THREE.ParticleSystem ) {
-				object.rotation.y = time/100000 * ( i < 4 ? i + 1 : - ( i + 1 ) );
-			}
-		}
-	}
 }
 
 Cubes = function(scene, clickables){
@@ -155,7 +102,7 @@ Cubes = function(scene, clickables){
 	xsize = 480 / xgrid;
 	ysize = 204 / ygrid;
 
-	var parameters = { color: 0xffffff, map: texture },
+	var parameters = { color: 0xffffff, map: texture, transparent: true },
 		material_base = new THREE.MeshBasicMaterial( parameters );
 
 	renderer.initMaterial( material_base, scene.__lights, scene.fog );

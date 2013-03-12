@@ -2,6 +2,11 @@
 Jeremy Bernstein
 3/11/2013
 */
+var paused = false;
+
+var delta;
+var clock = new THREE.Clock();
+
 var renderer,
     camera,
     scene,
@@ -10,6 +15,7 @@ var renderer,
 var videoScene;
 
 var initWebGL = function(){
+    setupInput();
     renderer = new THREE.WebGLRenderer( { antialias: true } );
     renderer.setSize( window.innerWidth, window.innerHeight );
     $(renderer.domElement).attr("id", "renderer");
@@ -38,7 +44,7 @@ var initWebGL = function(){
     
     makeScene();
 
-    // animateThree();
+    animateThree();
 }
 
 var makeScene = function(){
@@ -55,7 +61,24 @@ var makeScene = function(){
     renderer.render(scene,camera);
 }
 
+animateThree = function(){
+    requestAnimationFrame( animateThree );
+    if(!paused){
+        delta = clock.getDelta();
+        
+        videoScene.update();
 
+        camera.position.x += ( (mouseX/6) - camera.position.x ) * .005;
+        camera.position.y += ( - (mouseY/6) - camera.position.y ) * .005;
+
+        camera.lookAt( scene.position );
+
+        
+        renderer.render( scene, camera );
+        
+
+    }
+}
 
 onWindowResize = function() {
     camera.aspect = window.innerWidth / window.innerHeight;
