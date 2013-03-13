@@ -11,9 +11,8 @@ function setupInput(){
     window.addEventListener( 'resize', onWindowResize, false );
     
     $(document).mousedown( function(event) {
-    	console.log("click!");
     	var elemID = (event.target || event.srcElement).id;
-    	console.log(elemID);
+//    	console.log(elemID);
     	mouseDown = true;
     	if(elemID == "renderer")
     		videoScene.mousedown(event);
@@ -29,10 +28,6 @@ function setupInput(){
     $(window).mousemove(function(e) {
         mouseX = ( event.clientX - window.innerWidth / 2 );
         mouseY = ( event.clientY - window.innerHeight / 2 );
-
-    	// mouseX = e.pageX;
-     //    mouseY = e.pageY;
-        console.log(mouseX + " + " + mouseY);
     });
 
     

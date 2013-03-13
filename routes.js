@@ -1,7 +1,10 @@
 // Routes.js
 
 var app = require('./server'),
-    everyauth = require("everyauth");
+    everyauth = require("everyauth"),
+    videos = require('./static/js/videos').videos;
+
+var util = require('util');
 
 ///////////////////////////////////////////
 //              Routes                   //
@@ -15,7 +18,8 @@ app.server.get('/', function(req,res){
               title : 'Jeremy Bernstein',
               description: 'A Web Portfolio',
               author: 'Jeremy Bernstein',
-              serverAddress: app.server.socketAddress
+              serverAddress: app.server.socketAddress,
+              videos: videos
             }
   });
 });
