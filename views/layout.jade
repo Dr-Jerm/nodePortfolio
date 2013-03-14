@@ -33,13 +33,6 @@ html.no-js(lang='en')
     script(src="/js/videos.js")
     script(src="/js/input.js")
 
-    script(type="text/javascript")
-      (function($){
-        var serverAddress = "#{serverAddress}"
-        console.log("Connecting socket to: " + serverAddress);
-        var socket = io.connect(serverAddress);
-      })(jQuery);
-
     block head
   body
     div(class="navbar navbar-fixed-top")
@@ -50,10 +43,54 @@ html.no-js(lang='en')
             span(class="icon-bar")
             span(class="icon-bar")
           a(class="brand",href="/") Jeremy Bernstein
+          div.nav-collapse
+            ul.nav
+              li
+                a(href="#contact_modal", data-toggle='modal')
+                  |Contact Me!
+    #contact_modal.modal.fade(style="display: none;")
+      form.form-horizontal(style="margin-bottom: 0px; z-index:20;")
+        .modal-header
+          a.close(data-dismiss='modal') x
+          h3 Contact Me!
+          | Shoot me a message
+        .modal-body
+          .control-group
+            label.control-label(for='name') Name
+            .controls
+              input#name(type='text', name="name", placeholder='John Smith')
+          .control-group
+            label.control-label(for='email') Email
+            .controls
+              input#email(type='text', name="email", placeholder='user@example.com')
+          .control-group
+            label.control-label(for='email') Message
+            .controls
+              textarea#message.input-xlarge(name="message", placeholder='Hi')
+        .modal-footer
+          a#Contact_Ok.btn.btn-primary(href='#', data-dismiss='modal') OK
+          a.btn(href='#', data-dismiss='modal') Cancel
     div(class="container")
       block content
 
       footer
         include footer
+        script(type="text/javascript")
+          (function($){
+            var serverAddress = "#{serverAddress}"
+            console.log("Connecting socket to: " + serverAddress);
+            var socket = io.connect(serverAddress);
+
+            console.log($('#Contact_Ok'));
+
+            $('#Contact_Ok').click(function(){
+                $('#Contact_Ok')
+                var name = $('#name').val();
+                var email = $('#email').val();
+                var message = $('#message').val();
+
+                console.log(name + " " + email + " " + message);
+              });
+          })(jQuery);
         script(src="/js/script.js")
         script(src="/js/bootstrap.min.js")

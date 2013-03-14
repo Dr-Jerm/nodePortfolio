@@ -32,10 +32,10 @@ block content
                 div.portfolio-listItem
                   p(id=vid.youtubeCode)=vid.title
   div
-    div#html5portfolio(style="display:none;")
-      include html5portfolio
     div#htmlPortfolio(style="display:none;")
       include htmlPortfolio
+    div#html5portfolio(style="display:none;")
+      include html5portfolio
   script(type="text/javascript")
     (function($){
       if(Detector.webgl){
@@ -50,5 +50,7 @@ block content
 
       $(".portfolio-listContent").on("click", ".portfolio-listItem", function(event){
         console.log(event.target.id + " was clicked!");
+        swapPortfolioElement(event.target.id);
+
       })
     })(jQuery)

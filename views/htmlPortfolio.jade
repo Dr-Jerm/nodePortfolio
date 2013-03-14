@@ -1,2 +1,15 @@
-div
-  |NON-HTML5 Portfolio
+|NON-HTML5 Portfolio
+div.portfolio-img-holder
+  for vid in videos
+    div(id=vid.youtubeCode+'_IMG_DIV', style="display:none;")
+      img.portfolio-img(id=vid.youtubeCode+'_IMG', src='/images/'+vid.videoImage)
+script(type="text/javascript")
+  (function($){
+    $('#eT4jobRvqlI_IMG_DIV').toggleClass('active-portfolio-img');
+    $('#eT4jobRvqlI_IMG_DIV').css("display","inline");
+    $(".portfolio-img-holder").on("click", ".portfolio-img", function(event){
+      console.log(event.target.id + " was clicked!");
+      swapPortfolioElement(event.target.id);
+
+    })
+  })(jQuery)

@@ -71,8 +71,6 @@ Cubes = function(scene, clickables){
 	texture.format = THREE.RGBFormat;
 	texture.generateMipmaps = false;
 
-	//
-	
 	this.change_uvs = function( geometry, unitx, unity, offsetx, offsety ) {
 
 		var i, j, uv;
@@ -102,7 +100,7 @@ Cubes = function(scene, clickables){
 	xsize = 480 / xgrid;
 	ysize = 204 / ygrid;
 
-	var parameters = { color: 0xffffff, map: texture, transparent: true },
+	var parameters = { color: 0xffffff, map: texture, transparent: true, opacity:0 },
 		material_base = new THREE.MeshBasicMaterial( parameters );
 
 	renderer.initMaterial( material_base, scene.__lights, scene.fog );
@@ -143,6 +141,7 @@ Cubes = function(scene, clickables){
 		mesh.dx = cubeSpeed * ( 0.5 - Math.random() );
 		mesh.dy = cubeSpeed * ( 0.5 - Math.random() );
 		mesh.dz = -cubeSpeed * ( 1+ 0.5 * Math.random() );
+		mesh.o = 1/cubeDistance; // opacity change
 		
 
 		mesh.rotation.x += 10 * mesh.dx * cubeDistance;
@@ -190,11 +189,15 @@ Cubes = function(scene, clickables){
 			mesh.position.y += 200 * mesh.dy;
 			mesh.position.z += 400 * mesh.dz;
 
+			mesh.material.opacity += mesh.o;
+
 			if(this.positionCounter >= cubeDistance){
 				mesh.dx = mesh.dx *-1;
 				mesh.dy = mesh.dy *-1;
 				mesh.dz = mesh.dz *-1;
-				
+		
+				mesh.material.opacity = 1;
+
 				this.state = "focus";
 			}
 		}
@@ -214,10 +217,14 @@ Cubes = function(scene, clickables){
 			mesh.position.y += 200 * mesh.dy;
 			mesh.position.z += 400 * mesh.dz;
 
+			mesh.material.opacity -= mesh.o;
+
 			if(this.positionCounter <= 0){
 				mesh.dx = mesh.dx *-1;
 				mesh.dy = mesh.dy *-1;
 				mesh.dz = mesh.dz *-1;
+
+				mesh.material.opacity = 0;
 				
 				//this.state = "idle";
 				if(this.state == "returning"){
@@ -242,7 +249,9 @@ Cubes = function(scene, clickables){
 	}
 
 	this.changeVideo = function(video){
-		var tex = video.videoTexture;
+		if(!video.imgTex)
+			video.imgTex = THREE.ImageUtils.loadTexture('/images/'+video.videoImage);
+		var tex = video.imgTex;
 		nextVid = video;
 		
 		if(this.state == "idle"){
@@ -282,3 +291,21 @@ function getLines(ctx,phrase,maxPxLength,textStyle) {
     return phraseArray;
 }
 
+function swapPortfolioElement(id){
+	for(i in videosJSON){
+		if(videosJSON[i].youtubeCode == id){
+			if(Detector.webgl){
+				videoScene.cubes.changeVideo(videosJSON[i]);
+			}else{
+				$('.active-portfolio-img').fadeToggle("fast", function(){
+					console.log('fading out old');
+					$('.active-portfolio-img')	.toggleClass('active-portfolio-img');
+					$('#'+id+'_IMG_DIV').fadeToggle("fast",function(){
+						$('#'+id+'_IMG_DIV').toggleClass('active-portfolio-img');
+						console.log('fading in ' + id);
+					});	
+				})
+			}
+		}
+	}
+}

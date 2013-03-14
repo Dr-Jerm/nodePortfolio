@@ -36,12 +36,8 @@ var initWebGL = function(){
 
     canvas.appendChild( renderer.domElement );
 
-
     window.addEventListener( 'resize', onWindowResize, false );
 
-
-
-    
     makeScene();
 
     animateThree();

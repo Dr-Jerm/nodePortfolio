@@ -16,7 +16,7 @@ function setupInput(){
     	mouseDown = true;
     	if(elemID == "renderer")
     		videoScene.mousedown(event);
-    	event.preventDefault();
+//    	event.preventDefault();
     	
     });
     
