@@ -3,7 +3,10 @@ var connect = require('connect'),
     express = require('express'),
     io = require('socket.io'),
     port = (process.env.PORT || 8081),
-    everyauth = require('everyauth');
+    everyauth = require('everyauth'),
+    emailer = require('./emailer');
+
+var util = require('util');
 
 // var usersById = {};
 // var usersByGithubId = {};
@@ -82,21 +85,24 @@ var NotFound = routes.NotFound;
 var io = io.listen(server);
 io.set('log level', 2);
 io.sockets.on('connection', function(socket){
-  console.log('Client Connected');
-  socket.on('message', function(data){
-    console.log("Client message: " + data)
-    // socket.broadcast.emit('server_message',data);
-    // socket.emit('server_message',data);
-  });
-  socket.on('disconnect', function(){
-    console.log('Client Disconnected.');
-  });
+    console.log('Client Connected');
+    socket.on('message', function(data){
+        console.log("Client message: " + data)
+        // socket.broadcast.emit('server_message',data);
+        // socket.emit('server_message',data);
+    });
+    socket.on('contact_post', function(data){
+        emailer.emailContactMe(data);
+    })
+    socket.on('disconnect', function(){
+        console.log('Client Disconnected.');
+    });
 });
 
 if(server.address().address == '0.0.0.0'){
-  server.socketAddress = '127.0.0.1';
+    server.socketAddress = '127.0.0.1';
 }
 else{
-  server.socketAddress = server.address().address;
+    server.socketAddress = server.address().address;
 }
 console.log('Listening on ' + server.socketAddress +":"+ port );

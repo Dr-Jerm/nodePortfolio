@@ -60,6 +60,10 @@ html.no-js(lang='en')
             .controls
               input#name(type='text', name="name", placeholder='John Smith')
           .control-group
+            label.control-label(for='org') Organization
+            .controls
+              input#org(type='text', name="Organization", placeholder='Awesome Inc.')
+          .control-group
             label.control-label(for='email') Email
             .controls
               input#email(type='text', name="email", placeholder='user@example.com')
@@ -67,6 +71,16 @@ html.no-js(lang='en')
             label.control-label(for='email') Message
             .controls
               textarea#message.input-xlarge(name="message", placeholder='Hi')
+          .control-group
+                .controls
+                    label.checkbox
+                    input#eCard(type='checkbox', name="eCard")
+                    | Would you like to have an email sent with my contact info?
+          .control-group
+                .controls
+                    label.checkbox
+                    input#guestB(type='checkbox', name="guestB")
+                    | Make my message (not email) viewable on the guestbook!
         .modal-footer
           a#Contact_Ok.btn.btn-primary(href='#', data-dismiss='modal') OK
           a.btn(href='#', data-dismiss='modal') Cancel
@@ -76,20 +90,25 @@ html.no-js(lang='en')
       footer
         include footer
         script(type="text/javascript")
+          var socket;
           (function($){
             var serverAddress = "#{serverAddress}"
             console.log("Connecting socket to: " + serverAddress);
-            var socket = io.connect(serverAddress);
+            socket = io.connect(serverAddress);
 
             console.log($('#Contact_Ok'));
 
             $('#Contact_Ok').click(function(){
-                $('#Contact_Ok')
-                var name = $('#name').val();
-                var email = $('#email').val();
-                var message = $('#message').val();
+                var contactRequest = {};
+                contactRequest.name = $('#name').val();
+                contactRequest.org = $('#org').val();
+                contactRequest.email = $('#email').val();
+                contactRequest.message = $('#message').val();
+                contactRequest.eCard = $('#eCard').val();
+                contactRequest.guestB = $('#guestB').val();
 
-                console.log(name + " " + email + " " + message);
+                socket.emit('contact_post', {contact: contactRequest});
+
               });
           })(jQuery);
         script(src="/js/script.js")
