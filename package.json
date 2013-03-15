@@ -7,7 +7,10 @@
     "connect": "1.8.5",
     "express": "2.5.2",
     "jade": "0.20.0",
-    "everyauth": "0.3.1"
+    "everyauth": "0.3.1",
+    "nodemailer": "0.3.44",
+    "socket.io": "0.9.13",
+    "email-templates-windows": "0.0.7"
   },
   "engine": "node >= 0.6.6"
 }
