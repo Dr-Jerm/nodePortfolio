@@ -4,7 +4,10 @@ var connect = require('connect'),
     io = require('socket.io'),
     port = (process.env.PORT || 8081),
     everyauth = require('everyauth'),
-    emailer = require('./emailer');
+    check = require('validator').check;
+
+var emailer = require('./emailer'),
+    contactMe = require('./models/contact-me');
 
 var util = require('util');
 
@@ -56,19 +59,19 @@ server.configure(function(){
 server.error(function(err, req, res, next){
     if (err instanceof NotFound) {
         res.render('404.jade', { locals: { 
-                  title : '404 - Not Found'
-                 ,description: ''
-                 ,author: ''
-                 ,analyticssiteid: 'XXXXXXX' 
-                },status: 404 });
+            title : '404 - Not Found'
+            ,description: ''
+            ,author: ''
+            ,analyticssiteid: 'XXXXXXX' 
+        },status: 404 });
     } else {
         res.render('500.jade', { locals: { 
-                  title : 'The Server Encountered an Error'
-                 ,description: ''
-                 ,author: ''
-                 ,analyticssiteid: 'XXXXXXX'
-                 ,error: err 
-                },status: 500 });
+            title : 'The Server Encountered an Error'
+            ,description: ''
+            ,author: ''
+            ,analyticssiteid: 'XXXXXXX'
+            ,error: err 
+        },status: 500 });
     }
 });
 server.listen( port );
@@ -92,8 +95,18 @@ io.sockets.on('connection', function(socket){
         // socket.emit('server_message',data);
     });
     socket.on('contact_post', function(data){
-        emailer.emailContactMe(data);
-    })
+        try{
+            check(data.contact.email).isEmail()
+            contactMe.add(data.contact, function(rows){
+                emailer.emailContactMe(data);
+            });
+        
+        }
+        catch(e){
+            console.log("something is fishy... their email changed: " + e.message);
+        }
+
+    });
     socket.on('disconnect', function(){
         console.log('Client Disconnected.');
     });

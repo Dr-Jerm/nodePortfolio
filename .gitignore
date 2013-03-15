@@ -1,5 +1,6 @@
 node_modules
 conf.js
+test.js
 .DS_Store
 assets
 *.sublime*

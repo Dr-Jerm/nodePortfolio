@@ -10,7 +10,9 @@
     "everyauth": "0.3.1",
     "nodemailer": "0.3.44",
     "socket.io": "0.9.13",
-    "email-templates-windows": "0.0.7"
+    "email-templates-windows": "0.0.7",
+    "mysql": "2.0.0-alpha7",
+    "validator": "0.4.28"
   },
   "engine": "node >= 0.6.6"
 }

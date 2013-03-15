@@ -26,6 +26,7 @@ html.no-js(lang='en')
     script(src="/js/jquery-ui-1.10.0.custom.min.js")
 
     script(src="/socket.io/socket.io.js")
+    script(src="/js/validator-min.js")
     script(src="/js/Detector.js")
 
     script(type="text/javascript")
@@ -81,8 +82,10 @@ html.no-js(lang='en')
                     label.checkbox
                     input#guestB(type='checkbox', name="guestB")
                     | Make my message (not email) viewable on the guestbook!
+          div#validateAlert.alert(style="display:none;")
+            button.close(type="button", data-dismiss="alert")|&times;
         .modal-footer
-          a#Contact_Ok.btn.btn-primary(href='#', data-dismiss='modal') OK
+          a#Contact_Ok.btn.btn-primary(href='#') OK
           a.btn(href='#', data-dismiss='modal') Cancel
     div(class="container")
       block content
@@ -104,12 +107,49 @@ html.no-js(lang='en')
                 contactRequest.org = $('#org').val();
                 contactRequest.email = $('#email').val();
                 contactRequest.message = $('#message').val();
-                contactRequest.eCard = $('#eCard').val();
-                contactRequest.guestB = $('#guestB').val();
+                contactRequest.eCard = ($('#eCard').val() == "on" ? 1 : 0);
+                contactRequest.public = ($('#guestB').val() == "on" ? 1 : 0)
 
-                socket.emit('contact_post', {contact: contactRequest});
+                if(formValidate(contactRequest)){
+                  socket.emit('contact_post', {contact: contactRequest});
+                  $('#validateAlert').css("display", "none");
+                  $('#contact_modal').modal('hide');
+                }
 
+                
               });
+
+            var formValidate = function(request){
+              try{
+                check(request.name).len(3,128);
+              } catch(e){
+                $('#validateAlert').text("Name must be between 3 and 128 characters");
+                $('#validateAlert').css("display", "inline");
+                return false;
+              }
+              try{
+                check(request.email).len(6,64).isEmail();
+              } catch(e){ 
+                $('#validateAlert').text("Email is not valid.");
+                $('#validateAlert').css("display", "inline");
+                return false;
+              }
+              try{
+                check(request.org).len(0,128);
+              } catch(e){
+                $('#validateAlert').text("Organization must be less than 128 characters");
+                $('#validateAlert').css("display", "inline");
+                return false;
+              }
+              try{
+                check(request.message).len(0,1024);
+              } catch(e){
+                $('#validateAlert').text("Your message must be no greater than 1024 characters");
+                $('#validateAlert').css("display", "inline");
+                return false;
+              }
+              return true;
+            }
           })(jQuery);
         script(src="/js/script.js")
         script(src="/js/bootstrap.min.js")
