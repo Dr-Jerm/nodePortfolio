@@ -1,6 +1,6 @@
 // Routes.js
 
-var app = require('./server'),
+var app = require('./server').app,
     everyauth = require("everyauth"),
     videos = require('./static/js/videos').videos;
 
@@ -12,15 +12,15 @@ var util = require('util');
 
 /////// ADD ALL YOUR ROUTES HERE  /////////
 
-app.server.get('/', function(req,res){
-  res.render('index.jade', { 
-    locals : { 
-              title : 'Jeremy Bernstein',
-              description: 'A Web Portfolio',
-              author: 'Jeremy Bernstein',
-              serverAddress: app.server.socketAddress,
-              videos: videos
-            }
+console.log(app.socketAddress);
+
+app.get('/', function(req,res){
+  res.render('index.jade', {  
+    title : 'Jeremy Bernstein',
+    description: 'A Web Portfolio',
+    author: 'Jeremy Bernstein',
+    serverAddress: app.socketAddress,
+    videos: videos
   });
 });
 
@@ -63,12 +63,12 @@ app.server.post('/add', function(req, res) {
 */
 
 //A Route for Creating a 500 Error (Useful to keep around)
-app.server.get('/500', function(req, res){
+app.get('/500', function(req, res){
     throw new Error('This is a 500 Error');
 });
 
 //The 404 Route (ALWAYS Keep this as the last route)
-app.server.get('/*', function(req, res){
+app.get('/*', function(req, res){
     throw new NotFound;
 });
 

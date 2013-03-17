@@ -1,6 +1,7 @@
 //setup Dependencies
-var connect = require('connect'), 
+var http = require('http'),
     express = require('express'),
+    app = express(),
     io = require('socket.io'),
     port = (process.env.PORT || 8081),
     everyauth = require('everyauth'),
@@ -43,46 +44,45 @@ var util = require('util');
 //   .redirectPath('/');
 
 //Setup Express
-var server = express.createServer();
-server.configure(function(){
-    server.set('views', __dirname + '/views');
-    server.set('view options', { layout: false });
-    server.use(connect.bodyParser());
-    server.use(express.cookieParser());
-    server.use(express.session({ secret: "j3rM"}));
-    server.use(connect.static(__dirname + '/static'));
-    server.use(everyauth.middleware());
-    server.use(server.router);
-});
 
+app.configure(function(){
+    app.set('views', __dirname + '/views');
+    app.set('view options', { layout: false });
+    app.set('view engine', 'jade');
+    app.use(express.bodyParser());
+    app.use(express.cookieParser());
+    app.use(express.session({ secret: "j3rM"}));
+    app.use(express.static(__dirname + '/static'));
+    app.use(everyauth.middleware());
+    app.use(app.router);
+    app.use(express.errorHandler());
+ });
 //setup the errors
-server.error(function(err, req, res, next){
-    if (err instanceof NotFound) {
-        res.render('404.jade', { locals: { 
-            title : '404 - Not Found'
-            ,description: ''
-            ,author: ''
-            ,analyticssiteid: 'XXXXXXX' 
-        },status: 404 });
-    } else {
-        res.render('500.jade', { locals: { 
-            title : 'The Server Encountered an Error'
-            ,description: ''
-            ,author: ''
-            ,analyticssiteid: 'XXXXXXX'
-            ,error: err 
-        },status: 500 });
-    }
-});
+// app.error(function(err, req, res, next){
+//     if (err instanceof NotFound) {
+//         res.render('404.jade', { locals: { 
+//             title : '404 - Not Found'
+//             ,description: ''
+//             ,author: ''
+//             ,analyticssiteid: 'XXXXXXX' 
+//         },status: 404 });
+//     } else {
+//         res.render('500.jade', { locals: { 
+//             title : 'The Server Encountered an Error'
+//             ,description: ''
+//             ,author: ''
+//             ,analyticssiteid: 'XXXXXXX'
+//             ,error: err 
+//         },status: 500 });
+//     }
+// });
+var server = http.createServer(app);
 server.listen( port );
 
 // Export server
 server.testString = "test";
-exports.server = server;
 
-// Setup Routes
-var routes = require('./routes');
-var NotFound = routes.NotFound;
+
 
 //Setup Socket.IO
 var io = io.listen(server);
@@ -113,9 +113,15 @@ io.sockets.on('connection', function(socket){
 });
 
 if(server.address().address == '0.0.0.0'){
-    server.socketAddress = '127.0.0.1';
+    app.socketAddress = '127.0.0.1';
 }
 else{
-    server.socketAddress = server.address().address;
+    app.socketAddress = server.address().address;
 }
-console.log('Listening on ' + server.socketAddress +":"+ port );
+console.log('Listening on ' + app.socketAddress +":"+ port );
+
+exports.app = app;
+
+// Setup Routes
+var routes = require('./routes');
+var NotFound = routes.NotFound;
