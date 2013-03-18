@@ -47,6 +47,9 @@ html.no-js(lang='en')
           div.nav-collapse
             ul.nav
               li
+                a#bio(href="/bio")
+                  |About Me
+              li
                 a(href="#contact_modal", data-toggle='modal')
                   |Contact Me!
     #contact_modal.modal.fade(style="display: none;")
@@ -77,7 +80,7 @@ html.no-js(lang='en')
                     label.checkbox
                     input#eCard(type='checkbox', name="eCard")
                     | Would you like to have an email sent with my contact info?
-          .control-group
+          .control-group(style="display:none;")
                 .controls
                     label.checkbox
                     input#guestB(type='checkbox', name="guestB")
@@ -107,8 +110,9 @@ html.no-js(lang='en')
                 contactRequest.org = $('#org').val();
                 contactRequest.email = $('#email').val();
                 contactRequest.message = $('#message').val();
-                contactRequest.eCard = ($('#eCard').val() == "on" ? 1 : 0);
-                contactRequest.public = ($('#guestB').val() == "on" ? 1 : 0)
+                contactRequest.eCard = ($('#eCard').is(':checked'));
+                contactRequest.public = ($('#guestB').is(':checked'));
+                console.log(contactRequest);
 
                 if(formValidate(contactRequest)){
                   socket.emit('contact_post', {contact: contactRequest});
@@ -153,3 +157,4 @@ html.no-js(lang='en')
           })(jQuery);
         script(src="/js/script.js")
         script(src="/js/bootstrap.min.js")
+        script(src="/js/bootstrap-tab.js")

@@ -24,6 +24,20 @@ app.get('/', function(req,res){
   });
 });
 
+app.get('/bio', function(req,res){
+  res.render('bio.jade', {  
+    title : 'Jeremy Bernstein - About Me',
+    description: 'A Web Portfolio',
+    author: 'Jeremy Bernstein',
+    serverAddress: app.socketAddress
+  });
+});
+
+app.get('/resume', function(req,res){
+  var file = __dirname + '/static/resume_2_2012.pdf'
+  res.download(file);
+});
+
 /*app.server.post('/', function(req, res) {
 
   if(req.body != undefined) {

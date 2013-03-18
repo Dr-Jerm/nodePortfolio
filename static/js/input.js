@@ -25,7 +25,7 @@ function setupInput(){
     	mouseDown = false;
     });
   
-    $(window).mousemove(function(e) {
+    $(window).mousemove(function(event) {
         mouseX = ( event.clientX - window.innerWidth / 2 );
         mouseY = ( event.clientY - window.innerHeight / 2 );
     });

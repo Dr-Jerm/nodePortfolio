@@ -95,11 +95,12 @@ io.sockets.on('connection', function(socket){
         // socket.emit('server_message',data);
     });
     socket.on('contact_post', function(data){
+console.log(util.inspect(data));
         try{
-            check(data.contact.email).isEmail()
-            contactMe.add(data.contact, function(rows){
-                emailer.emailContactMe(data);
-            });
+           check(data.contact.email).isEmail()
+           contactMe.add(data.contact, function(rows){
+               emailer.emailContactMe(data);
+           });
         
         }
         catch(e){

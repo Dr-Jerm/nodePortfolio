@@ -15,18 +15,17 @@ block content
             |PRODUCING
       div.tabbable
         div.tab-content.portfolio-listContent
-          div.tab-pane.active(id="code")
+          div.tab-pane.active.fade.in(id="code")
             each vid in videos
               - if(vid.type.indexOf("code") !== -1)
                 div.portfolio-listItem
                   p(id=vid.youtubeCode)=vid.title
-
-          div.tab-pane(id="vfx")
+          div.tab-pane.fade(id="vfx")
             each vid in videos
               - if(vid.type.indexOf("vfx") !== -1)
                 div.portfolio-listItem
                   p(id=vid.youtubeCode)=vid.title
-          div.tab-pane(id="producing")
+          div.tab-pane.fade(id="producing")
             each vid in videos
               - if(vid.type.indexOf("producing") !== -1)
                 div.portfolio-listItem

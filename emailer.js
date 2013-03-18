@@ -25,9 +25,10 @@ var emailContactMe = function(contactData){
                 name: contactData.contact.name,
                 org: contactData.contact.org,
                 message: contactData.contact.message
-            }
+                }
 
             template('contact_me', locals, function(err, html, text){
+                console.log("in contact_me: " + util.inspect(html));
                 if(err)
                     console.log('template: ' + err)
                 else {
@@ -50,6 +51,44 @@ var emailContactMe = function(contactData){
         }
 
     });    
+    if(contactData.contact.eCard){
+
+        emailTemplates(templatesDir, function(err, template){
+            if(err)
+                console.log("emailTemplates: " + err);
+            else{
+
+                var locals = {
+                    email: contactData.contact.email,
+                    name: contactData.contact.name,
+                    org: contactData.contact.org,
+                    message: contactData.contact.message
+                    }
+                    
+                template('eCard', locals, function(err, html, text){
+                    console.log("in eCard: " + util.inspect(html));
+                    if(err)
+                        console.log('template: ' + err)
+                    else {
+                        transport.sendMail({
+                            from: 'Jeremy Bernstein <dr.jerm.io@gmail.com>',
+                            to: contactData.contact.email,
+                            subject: 'eCard from Jeremy Bernstein',
+                            html: html,
+                            text: text
+                        }, function(err, responseStatus){
+                            if(err)
+                                console.log('sendMail: ' + err)
+                            else{
+                                console.log(responseStatus);
+                            }
+                        });
+                    }
+
+                });
+            }
+        });
+    }
 }
 
 exports.emailContactMe = emailContactMe;
