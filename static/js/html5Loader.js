@@ -80,6 +80,6 @@ onWindowResize = function() {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize( window.innerWidth, window.innerHeight ); 
-    renderer.domElement.style.width =window.innerWidth + 'px';
-    renderer.domElement.style.height = 430 + 'px';
+    renderer.domElement.style.width = $('body').innerWidth() + 'px';
+    renderer.domElement.style.height = window.innerHeight * devicePixelRatio - $('#footer').height() + 'px';
 }

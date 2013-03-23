@@ -40,6 +40,7 @@ function handleKeyDown(event) {
     }
 
 
-    function handleKeyUp(event) {
+function handleKeyUp(event) {
         currentlyPressedKeys[event.keyCode] = false;
     }
+

@@ -18,11 +18,13 @@ html.no-js(lang='en')
     link(rel="shortcut icon", href="/images/favicon.png")
     link(rel='stylesheet', href='/css/bootstrap.min.css')
     link(rel='stylesheet', href='/css/bootstrap-responsive.min.css')
+    link(rel='stylesheet', href='/css/bootstrap-modal.css')
     link(rel='stylesheet', href='/css/jquery-ui-1.10.0.custom.min.css')
     link(rel='stylesheet', href='/css/style.css')
     link(rel='stylesheet', href='/css/portfolio.css')
     //-script(src='js/libs/modernizr-2.0.6.min.js')
     script(src="/js/jquery.min.js")
+    script(src="/js/jquery.fitvids.min.js")
     script(src="/js/jquery-ui-1.10.0.custom.min.js")
 
     script(src="/socket.io/socket.io.js")
@@ -94,7 +96,6 @@ html.no-js(lang='en')
       block content
 
       footer
-        include footer
         script(type="text/javascript")
           var socket;
           (function($){
@@ -158,3 +159,5 @@ html.no-js(lang='en')
         script(src="/js/script.js")
         script(src="/js/bootstrap.min.js")
         script(src="/js/bootstrap-tab.js")
+        script(src="/js/bootstrap-modal.js")
+        script(src="/js/bootstrap-modalmanager.js")

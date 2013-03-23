@@ -1,6 +1,32 @@
 extends layout
 
 block content
+  #content_modal.modal.container.fade(style="display: none;")
+    .modal-header
+      div.row-fluid
+        div.span4
+          h3#contentTitle
+        div.span4.text-left
+          p#contentSubTitle
+        div.span1.offset3
+          a.close(data-dismiss='modal', style="color:white;") x
+    .modal-body
+      div.row-fluid
+        div#vidContainer.text-center
+          div#player
+            script(src="//www.youtube.com/iframe_api")
+      hr
+      div.row-fluid
+        div.span4.hero-unit
+          div
+            h5
+              |Roles:
+            p#contentResponsiblities
+              |I did stuff
+        div.span8.hero-unit
+          div
+            p#contentBody
+              |Proin in dui sapien, non porttitor ligula. Sed auctor congue tempus. Cras risus enim, molestie a congue non, mattis vitae tortor. Ut sollicitudin ultricies tempus. Nunc non neque ut ipsum dictum sagittis id sed enim. Cras ultrices, libero eu egestas ultricies, tortor orci vulputate lorem, in consectetur magna justo sed massa. Donec vel diam sapien. Praesent condimentum luctus ligula, sed dictum velit placerat eget.
   div.row
     div.span3
       ul.nav.nav-tabs
@@ -40,16 +66,44 @@ block content
       if(Detector.webgl){
         console.log("WebGL enabled!")
         $('#html5portfolio').css("display","inline");
-        console.log($('#html5portfolio'));
       }
       else{
         console.log("Your client does not support WebGL!")
         $('#htmlPortfolio').css("display","inline");
       }
 
+      
       $(".portfolio-listContent").on("click", ".portfolio-listItem", function(event){
-        console.log(event.target.id + " was clicked!");
         swapPortfolioElement(event.target.id);
 
       })
+
+      window.onYouTubeIframeAPIReady = function(){
+        player = new YT.Player('player', {
+          //height: '390',
+          //width: '640',
+          //videoId: currVid,
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+        //YTplayer.div.click(killVideo);
+        }
+      window.onPlayerStateChange = function(event){
+        if(event.data == 0){
+          player.stopVideo();
+        }
+      }
+  
+      window.onPlayerReady = function(event) {
+        player.loadVideoById(currVid);
+        player.pauseVideo();
+      }
+      $('#content_modal').on('hide', function () {
+        player.stopVideo();
+      })
+
+
+
     })(jQuery)

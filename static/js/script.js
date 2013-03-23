@@ -1,3 +1,6 @@
+var player;
+var currVid = 'nHYbdPfb9Yk';
+
 (function($) {
     
 

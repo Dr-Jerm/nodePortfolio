@@ -15,3 +15,28 @@ body {
 .portfolio-listItem{
     cursor: pointer;
 }
+
+#contentSubTitle{
+	float: left;
+}
+
+/*#vidContainer{
+	width:100%;
+	text-align: center;
+	position: relative;
+	top:-40px;
+}
+
+#player{
+	display: inline-block;
+
+}*/
+
+.modal-body {
+    max-height: 900px;
+}
+
+.modal.large{
+/*  width: 780px;
+  margin-left: -390px; /* - width/2 */
+}

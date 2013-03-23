@@ -39,7 +39,6 @@ VideoScene = function(scene){
 		var raycaster = new THREE.Raycaster( camera.position, vector.sub(vector, camera.position ).normalize() );
 		var intersects = raycaster.intersectObjects(videoScene.clickables);
 		if ( intersects.length > 0 ) {
-			console.log(intersects[ 0 ]);
 			launchVideo(intersects[0].object.video);
 		} 
 	}
@@ -163,7 +162,7 @@ Cubes = function(scene, clickables){
 
 	}
 	
-	scene.position.x = -50;
+	scene.position.x = -25;
 	scene.add(group);
 
 	this.positionCounter = 0;
@@ -266,29 +265,15 @@ Cubes = function(scene, clickables){
 	}
 }
 
+function launchVideo(video){
+	currVid = video.youtubeCode;
 
-function getLines(ctx,phrase,maxPxLength,textStyle) {
-    var wa=phrase.split(" "),
-        phraseArray=[],
-        lastPhrase=wa[0],
-        l=maxPxLength,
-        measure=0;
-    ctx.font = textStyle;
-    for (var i=1;i<wa.length;i++) {
-        var w=wa[i];
-        measure=ctx.measureText(lastPhrase+w).width;
-        if (measure<l) {
-            lastPhrase+=(" "+w);
-        }else {
-            phraseArray.push(lastPhrase);
-            lastPhrase=w;
-        }
-        if (i===wa.length-1) {
-            phraseArray.push(lastPhrase);
-            break;
-        }
-    }
-    return phraseArray;
+	$('#contentTitle').html(video.title);
+	$('#contentSubTitle').html(video.subTitle);
+	$('#contentBody').html(video.description);
+	$('#contentResponsiblities').html(video.credits);
+
+	$('#content_modal').modal('show');
 }
 
 function swapPortfolioElement(id){
@@ -298,11 +283,9 @@ function swapPortfolioElement(id){
 				videoScene.cubes.changeVideo(videosJSON[i]);
 			}else{
 				$('.active-portfolio-img').fadeToggle("fast", function(){
-					console.log('fading out old');
 					$('.active-portfolio-img')	.toggleClass('active-portfolio-img');
 					$('#'+id+'_IMG_DIV').fadeToggle("fast",function(){
 						$('#'+id+'_IMG_DIV').toggleClass('active-portfolio-img');
-						console.log('fading in ' + id);
 					});	
 				})
 			}
