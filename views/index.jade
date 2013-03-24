@@ -17,13 +17,13 @@ block content
             script(src="//www.youtube.com/iframe_api")
       hr
       div.row-fluid
-        div.span4.hero-unit
+        div.span4
           div
             h5
               |Roles:
             p#contentResponsiblities
               |I did stuff
-        div.span8.hero-unit
+        div.span8
           div
             p#contentBody
               |Proin in dui sapien, non porttitor ligula. Sed auctor congue tempus. Cras risus enim, molestie a congue non, mattis vitae tortor. Ut sollicitudin ultricies tempus. Nunc non neque ut ipsum dictum sagittis id sed enim. Cras ultrices, libero eu egestas ultricies, tortor orci vulputate lorem, in consectetur magna justo sed massa. Donec vel diam sapien. Praesent condimentum luctus ligula, sed dictum velit placerat eget.
@@ -71,7 +71,7 @@ block content
         console.log("Your client does not support WebGL!")
         $('#htmlPortfolio').css("display","inline");
       }
-      
+
       $(".portfolio-listContent").on("click", ".portfolio-listItem", function(event){
         swapPortfolioElement(event.target.id);
       })
