@@ -2,7 +2,8 @@
 
 var app = require('./server').app,
     everyauth = require("everyauth"),
-    videos = require('./static/js/videos').videos;
+    videos = require('./static/js/videos').videos,
+    bio = require('./static/js/videos').bio.description;
 
 var util = require('util');
 
@@ -29,7 +30,8 @@ app.get('/bio', function(req,res){
     title : 'Jeremy Bernstein - About Me',
     description: 'A Web Portfolio',
     author: 'Jeremy Bernstein',
-    serverAddress: app.socketAddress
+    serverAddress: app.socketAddress,
+    bio: bio
   });
 });
 
