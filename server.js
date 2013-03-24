@@ -3,45 +3,15 @@ var http = require('http'),
     express = require('express'),
     app = express(),
     io = require('socket.io'),
-    port = (process.env.PORT || 8081),
     everyauth = require('everyauth'),
     check = require('validator').check;
+
+var port = 8081;
 
 var emailer = require('./emailer'),
     contactMe = require('./models/contact-me');
 
 var util = require('util');
-
-// var usersById = {};
-// var usersByGithubId = {};
-// var nextUserId = 0;
-
-// function addUser (source, sourceUser) {
-//   var user;
-//   if (arguments.length === 1) { // password-based
-//     user = sourceUser = source;
-//     user.id = ++nextUserId;
-//     return usersById[nextUserId] = user;
-//   } else { // non-password-based
-//     user = usersById[++nextUserId] = {id: nextUserId};
-//     user[source] = sourceUser;
-//   }
-//   return user;
-// }
-
-// everyauth.everymodule.findUserById( function (id, callback) {
-//     callback(null, usersById[id]);
-// });
-
-// everyauth.github
-//   .appId(conf.github.appid)
-//   .appSecret(conf.github.appsecret)
-//   .entryPath('/login')
-//   .callbackPath('/auth/github/callback')
-//   .findOrCreateUser( function (session, accessToken, accessTokenExtra, githubUserMetadata) {
-//     return usersByGithubId[githubUserMetadata.id] || (usersByGithubId[githubUserMetadata.id] = addUser('github', githubUserMetadata));
-//   })
-//   .redirectPath('/');
 
 //Setup Express
 
@@ -57,31 +27,9 @@ app.configure(function(){
     app.use(app.router);
     app.use(express.errorHandler());
  });
-//setup the errors
-// app.error(function(err, req, res, next){
-//     if (err instanceof NotFound) {
-//         res.render('404.jade', { locals: { 
-//             title : '404 - Not Found'
-//             ,description: ''
-//             ,author: ''
-//             ,analyticssiteid: 'XXXXXXX' 
-//         },status: 404 });
-//     } else {
-//         res.render('500.jade', { locals: { 
-//             title : 'The Server Encountered an Error'
-//             ,description: ''
-//             ,author: ''
-//             ,analyticssiteid: 'XXXXXXX'
-//             ,error: err 
-//         },status: 500 });
-//     }
-// });
+
 var server = http.createServer(app);
 server.listen( port );
-
-// Export server
-server.testString = "test";
-
 
 
 //Setup Socket.IO
