@@ -11,7 +11,7 @@ block content
         div.span4.info-pane 
           h3#contentTitle(style="margin-top:0px")
           div.row-fluid
-            p.text-right#contentSubTitle
+            p.text-right.author#contentSubTitle
           hr
           div.row-fluid
             div
@@ -33,36 +33,35 @@ block content
           div.row-fluid
             p#contentBody
               |Proin in dui sapien, non porttitor ligula. Sed auctor congue tempus. Cras risus enim, molestie a congue non, mattis vitae tortor. Ut sollicitudin ultricies tempus. Nunc non neque ut ipsum dictum sagittis id sed enim. Cras ultrices, libero eu egestas ultricies, tortor orci vulputate lorem, in consectetur magna justo sed massa. Donec vel diam sapien. Praesent condimentum luctus ligula, sed dictum velit placerat eget.
-  div.row
-    div.span3
-      ul.nav.nav-tabs
-        li.active
-          a(data-toggle="tab", href="#code")
-            |CODE
-        li
-          a(data-toggle="tab", href="#vfx")
-            |VFX
-        li
-          a(data-toggle="tab", href="#producing")
-            |PRODUCING
-      div.tabbable
-        div.tab-content.portfolio-listContent
-          div.tab-pane.active.fade.in(id="code")
-            each vid in videos
-              - if(vid.type.indexOf("code") !== -1)
-                div.portfolio-listItem
-                  p(id=vid.youtubeCode)=vid.title
-          div.tab-pane.fade(id="vfx")
-            each vid in videos
-              - if(vid.type.indexOf("vfx") !== -1)
-                div.portfolio-listItem
-                  p(id=vid.youtubeCode)=vid.title
-          div.tab-pane.fade(id="producing")
-            each vid in videos
-              - if(vid.type.indexOf("producing") !== -1)
-                div.portfolio-listItem
-                  p(id=vid.youtubeCode)=vid.title
-  div
+  div.span3
+    ul.nav.nav-tabs
+      li.active
+        a(data-toggle="tab", href="#code")
+          |CODE
+      li
+        a(data-toggle="tab", href="#vfx")
+          |VFX
+      li
+        a(data-toggle="tab", href="#producing")
+          |PRODUCING
+    div.tabbable
+      div.tab-content.portfolio-listContent
+        div.tab-pane.active.fade.in(id="code")
+          each vid in videos
+            - if(vid.type.indexOf("code") !== -1)
+              div.portfolio-listItem
+                p(id=vid.youtubeCode)=vid.title
+        div.tab-pane.fade(id="vfx")
+          each vid in videos
+            - if(vid.type.indexOf("vfx") !== -1)
+              div.portfolio-listItem
+                p(id=vid.youtubeCode)=vid.title
+        div.tab-pane.fade(id="producing")
+          each vid in videos
+            - if(vid.type.indexOf("producing") !== -1)
+              div.portfolio-listItem
+                p(id=vid.youtubeCode)=vid.title
+  div.container
     div#htmlPortfolio(style="display:none;")
       include htmlPortfolio
     div#html5portfolio(style="display:none;")
