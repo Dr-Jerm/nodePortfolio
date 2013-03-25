@@ -271,8 +271,14 @@ function launchVideo(video){
 	$('#contentTitle').html(video.title);
 	$('#contentSubTitle').html(video.subTitle);
 	$('#contentBody').html(video.description);
-	$('#contentResponsiblities').html(video.credits);
-
+	$('#contentResponsiblities').empty();
+	for(i in video.credits){
+		$('#contentResponsiblities').append('<li>'+video.credits[i]+'</li>');
+	}
+	$('#contentLinks').empty();
+	for(i in video.links){
+		$('#contentLinks').append('<li>'+video.links[i]+'</li>');
+	}
 	$('#content_modal').modal('show');
 }
 

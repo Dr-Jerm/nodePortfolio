@@ -1,29 +1,36 @@
 extends layout
 
 block content
-  #content_modal.modal.container.fade(style="display: none;")
-    .modal-header
+  #content_modal.modal.large.fade(style="display: none;")
+    .modal-header(style="margin-bottom:0px")
+      div.row-fluid.text-right
+        //- div.span1.text-right
+        a.close(data-dismiss='modal', style="color:white;") x
+    .modal-body(style="padding-top:0px")
       div.row-fluid
-        div.span4
-          h3#contentTitle
-        div.span4.text-left
-          p#contentSubTitle
-        div.span1.offset3
-          a.close(data-dismiss='modal', style="color:white;") x
-    .modal-body
-      div.row-fluid
-        div#vidContainer.text-center
-          div#player
-      hr
-      div.row-fluid
-        div.span4
-          div
+        div.span4.info-pane 
+          h3#contentTitle(style="margin-top:0px")
+          div.row-fluid
+            p.text-right#contentSubTitle
+          hr
+          div.row-fluid
+            div
             h5
               |Roles:
             p#contentResponsiblities
               |I did stuff
+          hr
+          div.row-fluid
+            div
+            h5
+              |Links:
+            ul#contentLinks
+              |Here are links
         div.span8
-          div
+          div#vidContainer.text-center
+            div#player
+          hr
+          div.row-fluid
             p#contentBody
               |Proin in dui sapien, non porttitor ligula. Sed auctor congue tempus. Cras risus enim, molestie a congue non, mattis vitae tortor. Ut sollicitudin ultricies tempus. Nunc non neque ut ipsum dictum sagittis id sed enim. Cras ultrices, libero eu egestas ultricies, tortor orci vulputate lorem, in consectetur magna justo sed massa. Donec vel diam sapien. Praesent condimentum luctus ligula, sed dictum velit placerat eget.
   div.row
@@ -77,8 +84,8 @@ block content
 
       window.onYouTubeIframeAPIReady = function(){
         player = new YT.Player('player', {
-          //height: '390',
-          //width: '640',
+          width: '480',
+          height: '270',
           //videoId: currVid,
           events: {
             'onReady': onPlayerReady,

@@ -20,23 +20,25 @@ body {
 	float: left;
 }
 
-/*#vidContainer{
-	width:100%;
-	text-align: center;
-	position: relative;
-	top:-40px;
-}
-
-#player{
-	display: inline-block;
-
-}*/
-
 .modal-body {
     max-height: 900px;
 }
 
 .modal.large{
-/*  width: 780px;
-  margin-left: -390px; /* - width/2 */
+    width: 60%; /* desired relative width */
+    left: 20%; /* (100%-width)/2 */
+    margin: auto auto auto auto; /* place center */
+}
+
+.info-pane{
+    padding: 10px;
+    background-color: #131517;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    border-top: solid 1px #2f2f2f;
+    -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    height:100%;
 }
