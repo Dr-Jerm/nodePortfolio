@@ -13,8 +13,6 @@ var util = require('util');
 
 /////// ADD ALL YOUR ROUTES HERE  /////////
 
-console.log(app.socketAddress);
-
 app.get('/', function(req,res){
   res.render('index.jade', {  
     title : 'Jeremy Bernstein',
@@ -35,8 +33,8 @@ app.get('/bio', function(req,res){
   });
 });
 
-app.get('/resume', function(req,res){
-  var file = __dirname + '/static/resume_2_2012.pdf'
+app.get('/JeremyBernstein_Resume_3_2013.pdf', function(req,res){
+  var file = __dirname + '/static/JeremyBernstein_Resume_3_2013.pdf'
   res.download(file);
 });
 

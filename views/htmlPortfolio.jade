@@ -7,7 +7,12 @@ script(type="text/javascript")
     $('#eT4jobRvqlI_IMG_DIV').toggleClass('active-portfolio-img');
     $('#eT4jobRvqlI_IMG_DIV').css("display","inline");
     $(".portfolio-img-holder").on("click", ".portfolio-img", function(event){
-      console.log(event.target.id + " was clicked!");
+      
+      var code = event.target.id.substring(0,11);
+      for (i in videosJSON){
+        if(videosJSON[i].youtubeCode == code)
+          launchVideo(videosJSON[i]);
+      }
       swapPortfolioElement(event.target.id);
 
     })

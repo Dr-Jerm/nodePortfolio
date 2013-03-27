@@ -79,6 +79,8 @@ block content
 
       $(".portfolio-listContent").on("click", ".portfolio-listItem", function(event){
         swapPortfolioElement(event.target.id);
+        $('.portfolio-listItem').removeClass('active');
+        $(event.target).parent().toggleClass('active');
       })
 
       window.onYouTubeIframeAPIReady = function(){

@@ -12,7 +12,6 @@ function setupInput(){
     
     $(document).mousedown( function(event) {
     	var elemID = (event.target || event.srcElement).id;
-//    	console.log(elemID);
     	mouseDown = true;
     	if(elemID == "renderer")
     		videoScene.mousedown(event);

@@ -12,9 +12,25 @@ body {
     z-index: -1;
 }
 
+.portfolio-listContent{
+    overflow:hidden;
+}
+
 .portfolio-listItem{
     cursor: pointer;
+    transition: all 1s ease-in-out 0s;
+    -webkit-transition: all 1s ease-in-out 0;
 }
+.portfolio-listItem:hover{
+    transform: translate(1em, 0px);
+    -webkit-transform: translate(1em, 0px);
+}
+
+.portfolio-listItem.active{
+    transform: translate(1em, 0px);
+    -webkit-transform: translate(1em, 0px);
+}
+
 
 #contentSubTitle{
 	float: left;
