@@ -1,24 +1,28 @@
 extends layout
 
 block content
+  script
+    (function($){
+        $(document.body).css("overflow", "visible");
+      })(jQuery);
   div.container
-    div.container
-      div.row-fluid
-        div.span3
-          img(src="/images/headshot.jpg")
-        div.span8
-          p=bio
-        hr
-        div
-          div.span7
-            |Proin in dui sapien, non porttitor ligula. Sed auctor congue tempus. Cras risus enim, molestie a congue non, mattis vitae tortor. Ut sollicitudin ultricies tempus. Nunc non neque ut ipsum dictum sagittis id sed enim. Cras ultrices, libero eu egestas ultricies, tortor orci vulputate lorem, in consectetur magna justo sed massa. Donec vel diam sapien. Praesent condimentum luctus ligula, sed dictum velit placerat eget.
-          div.span4
-            h2
-              | Really important text!
-      div.row-fluid
-        div.span5
-          br
-          div.row-fluid
+      div.row
+        // Left Column
+        div.span7
+          div.row
+            h3 Bio
+            p=bio
+            hr
+          div.row
+            h3 Skills
+            p Curabitur suscipit facilisis ligula. Donec id nisi vel est tristique dignissim in a neque. Cras eget augue eu metus tempus lobortis non a orci. Nam mattis quam id nisi volutpat vitae lobortis mi mattis. Ut id sodales sem. Donec tristique convallis scelerisque. Mauris neque sapien, congue id malesuada id, euismod in lorem. Aenean interdum, libero vel pellentesque ornare, lectus purus ultricies nisl, fringilla pharetra quam justo sed metus. 
+            hr
+          div.row
+            h3 Goals
+            p Curabitur suscipit facilisis ligula. Donec id nisi vel est tristique dignissim in a neque. Cras eget augue eu metus tempus lobortis non a orci. Nam mattis quam id nisi volutpat vitae lobortis mi mattis. Ut id sodales sem. Donec tristique convallis scelerisque. Mauris neque sapien, congue id malesuada id, euismod in lorem. Aenean interdum, libero vel pellentesque ornare, lectus purus ultricies nisl, fringilla pharetra quam justo sed metus. 
+        // Right Column
+        div.span4.offset1
+          div.row
             h3
               |Jeremy Bernstein
             a(href="/resume")
@@ -28,4 +32,10 @@ block content
               |dr.jerm.io@gmail.com
             p
               |505-353-1300
-
+            hr
+          div.row
+            img(src="/images/headshot.jpg")
+            hr
+          div.row
+            h3 For fun!
+            p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eu mauris eu ligula dignissim consectetur. Ut aliquam, leo quis faucibus. 
