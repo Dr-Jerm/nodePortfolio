@@ -67,7 +67,7 @@ var videosJSON = [
 { youtubeCode:   'TvKZsd3FFik', 
 	title: 		 'The Protoype',
 	subTitle: 	 '48 Hour Film - 2011',
-	description: 'The Prototype was created by students from my minor degree program (Interdisiplinary Film and Digital Media) as part of the 2011 Albuquerque 48 Hour Film Festival . It recieved three local awards: Audience Award, Best Use of Character, and Best Ensemble Acting: Comedy. My role was as Producer and VFX artist.',
+	description: 'Two brothers at the end of their rope take desperate measures to keep a roof over their heads. One, recently laid off by the local power company, schemes up a plan to steal some new technology, that is hopefully pawnable. Shenanigans ensues. Made for the 48 Hour FIlm Festival of 2011, winning <i>Audience Award</i>, <i>Best Use of Character</i>, and <i>Best Ensemble Acting</i>.',
 	credits:     ['Producer','VFX Artist'],
 	links:       ['<a href="http://www.youtube.com/watch?v=HeHR8DZJbj0" target="_blank">Behind the Scenes</a>'],
 	videoImage:  'TvKZsd3FFik.jpg',
@@ -76,7 +76,7 @@ var videosJSON = [
 { youtubeCode:   'jiALXlSZWfU', 
 	title: 		 'Sigmund\'s Tangent',
 	subTitle: 	 'VFX!',
-	description: 'This game was an entree in the New Mexico Gam Jam of 2011. We chose to develop the game using the HTML5 canvas element combined with the Processing.js library for javascript. The game recieved numerous local awards such as: Best Art, Best Gameplay, and Best Use of Theme.',
+	description: 'An insane asylum patient makes a daring escape with his trusty sidekick Sigmund, the light bridge laying pigeon. Help their escape by guiding them across the rooftops and away from the sheriff in pursuit. Made in HTML5 and processing.js.',
 	credits:     ['Programmer'],
 	links:       ['<a href="ReelBreakdown.pdf" target="_blank">Reel Breakdown</a>'],
 	videoImage:  'jiALXlSZWfU.jpg',
@@ -85,7 +85,7 @@ var videosJSON = [
 { youtubeCode:   'wPuv7DSu-sc', 
 	title: 		 'Haley',
 	subTitle: 	 'VFX!',
-	description: 'In my 4th year student capstone project I was the VFX Supervisor and Associate Producer. During the course of the short film I was responsible for such thigs as: setting up a render farm, logging camera data for VFX on set, directing cameras for VFX, deciding and implementing an asset pipeline, scheduling and mentoring a team of 7 other VFX artists, matchmoving, lighting, rendering, compositing, and more. ',
+	description: 'In a post-apocalyptic future a father and daughter struggle to survive in a harsh world that has brought out dark side of the remnants of society. 4th year senior film project. Lead a team of 9 other VFX artists throughout the 9 month production.',
 	credits:     ['Associate Producer','VFX Supervisor','VFX Artist'],
 	links:       ['<a href="ReelBreakdown.pdf" target="_blank">Reel Breakdown</a>'],
 	videoImage:  'wPuv7DSu-sc.jpg',
@@ -96,11 +96,10 @@ var videosJSON = [
 exports.videos = videosJSON;
 
 var bio = {
-	description: 'I am currently a Senior in Computer Science at the University of New Mexico '+
-					'with a minor in Film/Fine Art. I spent much of my early years of study producing and creating VFX films. Some of my '+
-					'projects can be viewed here. Currently my focus has been on more interactive media, and primarily how new '+
-					'HTML5 capabilities are opening new doors to user experiences through the web. My latest exporations have been with '+
-					'javascript, node.js, and webgl.'
+	bio : 		  'I am currently a Senior in Computer Science at the University of New Mexico with a minor in Film/Fine Art. My road to here has been a long and windy one. I grew up in rural New Mexico, a town called Ocate. Luckily my parents were early adopter\'s of technology and internet when it became available. While I lived 20 miles from anyone else my age, I had the world at my fingertips via the internet and infinite worlds open to me through video games. Inspired by the games I played, I entered the University of New Mexico planning on becoming a digital artist. After two years of growing towards more and more technical art work, I switched to Computer Science.',
+	skills: 	  '<ul><li>Currently my focus has been on more interactive media, and primarily how new HTML5 capabilities are opening new doors to user experiences through the web. My latest explorations have been with JavaScript, node.js, and webgl.</li><li>I did much early work doing film making and visual effects. I am proficient with visual effects techniques such as matchmoving, IBL, rendering, composition, keying, rigid body dynamics, and more.</li><li>I have found that I thrive in high energy team environments.</li><li>I am quick to adapt to new languages, frameworks, and pipelines.</li></ul>',
+	goals: 		  'As I finish up my college career I plan to fill the days ahead and beyond with continued learning and growth. I hope to do that by surrounding myself by, and working with inspiring and inspired individuals who share common goals. All I can do is share a piece of myself and hope that it is remembered. ',
+	fun:    	  '<ul><li>During a typical weekend or evening (when not coding) you might find me playing through some narrative video games, at a yoga studio, or going on a bike.</li> <li>During a typical weekend or evening (when coding) you might find me sitting in a coffee shop, playing around trying to get UDP networking working with node.js and three.js, and/or reading picking apart source code.</li></ul>' 
 };
 
 exports.bio = bio;

@@ -11,13 +11,13 @@ block content
         div.span7
           div.row.well
             h3 Bio
-            p=bio
+            p=bio.bio
           div.row
             h3 Skills
-            p Curabitur suscipit facilisis ligula. Donec id nisi vel est tristique dignissim in a neque. Cras eget augue eu metus tempus lobortis non a orci. Nam mattis quam id nisi volutpat vitae lobortis mi mattis. Ut id sodales sem. Donec tristique convallis scelerisque. Mauris neque sapien, congue id malesuada id, euismod in lorem. Aenean interdum, libero vel pellentesque ornare, lectus purus ultricies nisl, fringilla pharetra quam justo sed metus. 
+            !=bio.skills
           div.row.well
             h3 Goals
-            p Curabitur suscipit facilisis ligula. Donec id nisi vel est tristique dignissim in a neque. Cras eget augue eu metus tempus lobortis non a orci. Nam mattis quam id nisi volutpat vitae lobortis mi mattis. Ut id sodales sem. Donec tristique convallis scelerisque. Mauris neque sapien, congue id malesuada id, euismod in lorem. Aenean interdum, libero vel pellentesque ornare, lectus purus ultricies nisl, fringilla pharetra quam justo sed metus. 
+            p=bio.goals
         // Right Column
         div.span4.offset1
           div.row
@@ -36,4 +36,4 @@ block content
             hr
           div.row.well
             h3 For fun!
-            p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eu mauris eu ligula dignissim consectetur. Ut aliquam, leo quis faucibus. 
+            !=bio.fun

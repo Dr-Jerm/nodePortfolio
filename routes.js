@@ -3,7 +3,7 @@
 var app = require('./server').app,
     everyauth = require("everyauth"),
     videos = require('./static/js/videos').videos,
-    bio = require('./static/js/videos').bio.description;
+    bio = require('./static/js/videos').bio;
 
 var util = require('util');
 
